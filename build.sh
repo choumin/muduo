@@ -10,6 +10,8 @@ CXX=${CXX:-g++}
 
 ln -sf $BUILD_DIR/$BUILD_TYPE-cpp11/compile_commands.json
 
+JOBS=$(grep -c ^processor /proc/cpuinfo 2>/dev/null)
+
 mkdir -p $BUILD_DIR/$BUILD_TYPE-cpp11 \
   && cd $BUILD_DIR/$BUILD_TYPE-cpp11 \
   && cmake \
@@ -17,7 +19,7 @@ mkdir -p $BUILD_DIR/$BUILD_TYPE-cpp11 \
            -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR \
            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
            $SOURCE_DIR \
-  && make $*
+  && make $* -j$JOBS
 
 # Use the following command to run all the unit tests
 # at the dir $BUILD_DIR/$BUILD_TYPE :

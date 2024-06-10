@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 
-project(muduo C CXX)
+project(muduo_apps C CXX)
 
 enable_testing()
 
@@ -113,5 +113,6 @@ else()
   if(CARES_INCLUDE_DIR AND CARES_LIBRARY)
     add_subdirectory(examples/cdns)
   endif()
+  add_subdirectory(apps)
 endif()
 
